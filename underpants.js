@@ -21,6 +21,10 @@ var _ = {};
 *   _.identity({a: "b"}) === {a: "b"}
 */
 
+    _.identity = function(value1) {
+      return value1;
+    }
+  
 
 /** _.typeOf
 * Arguments:
@@ -41,8 +45,18 @@ var _ = {};
 * _.typeOf("javascript") -> "string"
 * _.typeOf([1,2,3]) -> "array"
 */
-
-
+_.typeOf = function(){
+    if(typeOf  === 'string'){
+        return "string";
+    }
+    if(Array.isArray(value)){
+        return "array";
+    }
+    if (typeOf  === 'object'){
+    return "object";
+    }
+}
+  
 /** _.first
 * Arguments:
 *   1) An array
@@ -60,7 +74,7 @@ var _ = {};
 *   _.first(["a", "b", "c"], 1) -> "a"
 *   _.first(["a", "b", "c"], 2) -> ["a", "b"]
 */
-
+   
 
 /** _.last
 * Arguments:
@@ -157,7 +171,6 @@ var _ = {};
 * Extra Credit:
 *   use _.each in your implementation
 */
-
 
 /** _.reject
 * Arguments:
