@@ -6,6 +6,7 @@
 var _ = {};
 
 
+
 /**
 * START OF OUR LIBRARY!
 * Implement each function below its instructions
@@ -45,18 +46,26 @@ var _ = {};
 * _.typeOf("javascript") -> "string"
 * _.typeOf([1,2,3]) -> "array"
 */
-_.typeOf = function(){
-    if(typeOf  === 'string'){
-        return "string";
+
+  _.typeOf  = function(value){
+    if(typeof value === 'string'){
+return 'string';
+    } else if (Array.isArray(value)){
+        return 'array';
+    } else if (typeof value === 'object'){
+        return 'object';
+    } else if (typeof value === 'undefined'){
+        return 'undefined';
+    } else if (typeof value === 'number'){
+        return 'number';
+    } else if (typeof value === 'boolean'){
+        return 'boolean';
+    } else if (value === null){
+        return 'null';
+    } else if (typeof value === 'function'){
+        return 'function'
     }
-    if(Array.isArray(value)){
-        return "array";
-    }
-    if (typeOf  === 'object'){
-    return "object";
-    }
-}
-  
+  }
 /** _.first
 * Arguments:
 *   1) An array
@@ -74,7 +83,25 @@ _.typeOf = function(){
 *   _.first(["a", "b", "c"], 1) -> "a"
 *   _.first(["a", "b", "c"], 2) -> ["a", "b"]
 */
+   _.first = function(array, n){
+    if (!Array.isArray(array)) {
+        return [];
+      }
+     
+      
+      if (n === undefined || typeof n !== 'number' || isNaN(n)) {
+        return array[0];
+      }
+    
+      
+      if (n < 0) {
+        return [];
+      }
+      
+      
+      return array.slice(0, n)
    
+}
 
 /** _.last
 * Arguments:
@@ -93,7 +120,14 @@ _.typeOf = function(){
 *   _.last(["a", "b", "c"], 1) -> "c"
 *   _.last(["a", "b", "c"], 2) -> ["b", "c"]
 */
-
+_.last = function(array, n) {
+  if (!Array.isArray(array)) return [];
+  if (n === undefined) return array[array.length - 1];
+  if (n <= 0) return [];
+  if (n >= array.length) return array;
+  
+  return array.slice(Math.max(0, array.length - n));
+};
 
 /** _.indexOf
 * Arguments:
@@ -320,6 +354,6 @@ _.typeOf = function(){
 
 if((typeof process !== 'undefined') &&
    (typeof process.versions.node !== 'undefined')) {
-    // here, export any references you need for tests //
+    
     module.exports = _;
 }
